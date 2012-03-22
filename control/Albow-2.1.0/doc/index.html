@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>ALBOW</title></head>
+<body>
+<h1 style="text-align: center;">ALBOW</h1>
+<div style="text-align: center;"><big><span style="font-weight: bold;">A Little Bit of Widgetry for PyGame<br><br>Version 2.1<br></span></big>
+</div>
+<br>
+This is a rather basic, no-frills widget set for creating a GUI using
+PyGame. It was developed for use in PyWeek competition entries, and has
+been used by the author in several such games so far.<br><br>Version 1.1 introduced a <a href="#Themes">theme system</a>
+to provide a central place for customising the appearance of Albow
+widgets, so you can easily give each of your games a distinctive look.<br><br>Version 2.0 adds a number of substantial new features, including TabPanel and
+TableView widgets and improved TextField-based controls.<br><br>Version 2.1 adds drop-down and pop-up menus, music facilities and OpenGL capabilities.<br>
+<h2>Contents</h2>
+<ul>
+  <li style="font-weight: bold;">Background</li><ul><li><a href="#Usage">Usage</a></li><li><a href="#Constructors">Constructors</a></li><li><a href="#Themes">Themes</a></li><li><a href="index.html#Events">Events</a></li><li><a href="#OpenGL">OpenGL</a></li><li><a href="#Example_Code">Example Code</a></li></ul><li style="font-weight: bold;">The Theme System</li><ul><li><a href="theme_system.html">Overview</a></li></ul><ul><li><a href="theme_property.html">ThemePropery class</a></li><li><a href="font_property.html">FontProperty class</a></li><li><a href="theme_class.html">Theme class</a></li><li><a href="theme_module.html">theme module</a></li></ul>
+  
+  <li style="font-weight: bold;">Core Classes</li>
+  <ul>
+    <li><a href="widget.html">Widget</a></li>
+    <li><a href="root.html">RootWidget</a></li></ul><li style="font-weight: bold;">Mixin Classes</li><ul><li><a href="control.html">Control</a></li><li><a href="base_button.html">ButtonBase</a></li></ul><li style="font-weight: bold;">Control Classes</li><ul>
+    <li><a href="label.html">Label</a></li><li><a href="image.html">Image</a></li>
+    <li><a href="button.html">Button</a></li><li><a href="image_button.html">ImageButton</a></li><li><a href="value_display.html">ValueDisplay</a></li><li><a href="text_editor.html">TextEditor</a></li><li><a href="field.html">Field</a></li>
+    <li><a href="text_field.html">TextField</a></li><li><a href="int_field.html">IntField</a></li><li><a href="float_field.html">FloatField</a></li><li><a href="check_box.html">CheckBox</a></li><li><a href="radio_button.html">RadioButton</a></li>
+  </ul>
+  <li style="font-weight: bold;">Layout Classes</li><ul><li><a href="row.html">Row</a></li><li><a href="column.html">Column</a></li><li><a href="grid.html">Grid</a></li><li><a href="frame.html">Frame</a></li><li><a href="tab_panel.html">TabPanel</a></li></ul><li style="font-weight: bold;">Modal Dialogs</li>
+  <ul>
+    <li><a href="dialog.html">Dialog class</a></li><li><a href="modal.html">Modal mixin</a></li>
+    <li><a href="dialog_functions.html">Dialog Functions</a></li><li><a href="file_dialog_functions.html">File Dialog Functions</a></li>
+  </ul><li style="font-weight: bold;">Menu Classes</li><ul><li><a href="menu.html">Menu</a></li><li style="font-weight: bold;"><a href="menu_bar.html"><span style="font-weight: normal;">MenuBar</span></a></li></ul><li style="font-weight: bold;">Music</li><ul><li><a href="music.html">music module</a></li><li><a href="play_list.html">PlayList class</a></li><li><a href="enable_music_control.html">EnableMusicControl class</a></li><li><a href="music_volume_control.html">MusicVolumeControl class</a></li><li style="font-weight: bold;"><a href="music_options_dialog.html"><span style="font-weight: normal;">MusicOptionsDialog class</span></a></li></ul><li style="font-weight: bold;">Other Widgets</li>
+  <ul>
+    <li><a href="shell.html">Shell</a></li><li><a href="screen.html">Screen</a></li>
+    <li><a href="text_screen.html">TextScreen</a><br>
+    </li>
+  </ul>
+  <ul>
+    <li><a href="grid_view.html">GridView</a></li>
+    <li><a href="palette_view.html">PaletteView</a></li><li><a href="table_view.html">TableView</a></li>
+  </ul><li style="font-weight: bold;">Utility Classes</li><ul><li><a href="image_array.html">ImageArray</a></li></ul><li style="font-weight: bold;">Exceptions</li><ul><li><a href="cancel.html">Cancel</a></li></ul>
+  <li style="font-weight: bold;"><a href="resource_functions.html">Resource Functions</a></li><li style="font-weight: bold;"><a href="sound_functions.html">Sound Functions</a></li><li><a style="font-weight: bold;" href="utils.html">Utility Functions</a><br>
+  </li>
+</ul>
+
+<h2><a name="Usage"></a>Usage</h2>
+Typical usage of the widget system is as follows:<br>
+<ol>
+  <li>Initialize the PyGame display surface.<br>
+  </li>
+  <li>Create an instance of <a href="root.html">RootWidget</a> or subclass thereof (such as <a href="shell.html">Shell</a>), passing it the display surface.<br>
+  </li>
+  <li>Create additional widgets if needed and add them as subwidgets of
+the root widget. If using Shell, create the screens you will be using
+and display your main screen.</li>
+  <li>Start the frame timer if you will be using it (see <a href="root.html#set_timer">RootWidget.set_timer()</a>).<br>
+  </li>
+  <li>Call the <span style="font-family: monospace;">run()</span> method of the root widget.</li>
+</ol><h2><a name="Constructors"></a>Constructors</h2>There is a
+convention used by the constructors of Widget and its subclasses. As
+well as the arguments listed in the documentation for the class's
+constructor, you can also pass initial values for any other attributes
+of the class as keyword arguments.<br><br>You can do this for
+attributes of your own Widget subclasses as well, if you pass on any
+extra keyword arguments to the base class __init__ method. The only
+requirement is that the attribute already exist as an instance or class
+attribute, or as a property. This ensures that mistaken keyword
+arguments are diagnosed rather than silently creating a new attribute.<br><h2><a name="Themes"></a>Themes</h2>Themes
+provide a centralised way of customising the appearance of Albow
+widgets on a per-class basis. There are three parts to the theme
+system: theme properties, which are attributes that get looked up
+automatically in the currently active themes; the Theme class,
+instances of which hold values for the theme properties of a particular
+class; and the theme module, which holds a default hierarchy of Theme
+instances that your application can replace. See the documentation
+pages on each of these for more details.
+<h2><a name="Events"></a>Events<br>
+</h2>
+Mouse events are classified into <span style="font-style: italic;">mouse_down</span>,<span style="font-style: italic;"> mouse_drag</span>, <span style="font-style: italic;">mouse_up</span> and <span style="font-style: italic;">mouse_move</span>,
+and are delivered by calling the corresponding method of the relevant
+widget. Mouse-down events are delivered to the widget in which the
+event occurs. Mouse-drag and mouse-up events are delivered to the
+widget that received the last mouse-down event. Mouse-move events (with
+no mouse button pressed) are delivered to the widget in which they
+occur.<br>
+<br>
+In addition to the usual PyGame event attributes, mouse events have the following extra attribute:<br>
+<div style="margin-left: 40px;">
+<dl>
+  <dt style="font-family: monospace;">local</dt>
+  <dd>Position of the mouse in the local coordinate system of the widget to which it is delivered.<br>
+  </dd>
+</dl>
+</div>
+Keyboard events are delivered by calling the <span style="font-family: monospace;">key_down</span> or <span style="font-family: monospace;">key_up</span> methods of the widget having the current <span style="font-style: italic;">keyboard focus</span>. A widget is given the keyboard focus by calling its <span style="font-family: monospace;">focus()</span>
+method. If the focus widget does not handle a key event, it is
+passed up the widget hierarchy until a handler is found.<br>
+<br>Both mouse and keyboard events have a set of boolean attributes
+indicating the state of the modifier keys at the time of the event:<br><dl style="margin-left: 40px;"><dt style="font-family: monospace;">shift</dt><dd>True if one of the Shift keys is down.</dd></dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;">ctrl</dt><dd>True if the Control key is down.</dd></dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;">alt</dt><dd>True if the Alt key (Option key on Macintosh) is down.</dd></dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;">meta</dt><dd>True if the Meta key (Command key on Macintosh, Windows key on PC keyboards) is down.</dd></dl>
+<div style="margin-left: 40px;">
+<dl>
+  <dt style="font-family: monospace;">cmd</dt>
+  <dd>True if
+either the Control or Meta key is down. This can be used to implement
+command keys that work according to either Macintosh or Linux/Windows
+conventions.<br>
+  </dd>
+</dl>
+</div><h2><a name="OpenGL"></a>OpenGL</h2>Albow can be used in an OpenGL environment. To do this, create an OpenGL display surface (using <span style="font-family: monospace;">pygame.display.set_mode()</span>
+with OPENGL in the flags) and pass it to the constructor of your root
+widget. You can then add widgets derived from GLViewport to provide 3D
+drawing areas, as well as ordinary 2D widgets.<br><br>There are a few
+things to be aware of when mixing 2D and 3D widgets. When using OpenGL,
+Albow distinguishes three kinds of widgets:<br><ol><li>3D widgets -- GLViewport, GLOrtho, GLPerspective and classes derived from them.<br></li><li>2D
+widgets -- most other Albow widgets. These are rendered to a temporary
+surface which is then transferred to the screen using glDrawPixels.<br></li><li>Container
+widgets -- used for laying out other widgets. By default these are Row,
+Column, Grid and classes derived from them. The root widget is also
+considered a container widget.</li></ol>Container widgets and 3D widgets can have any kind of widget as a subwidget, but 2D widgets can only contain other 2D widgets.<br><br>You can turn any 2D widget into a container widget by setting its <a href="widget.html#is_gl_container"><span style="font-family: monospace;">is_gl_container</span></a> property to true. However, when you do this, no drawing is performed for the widget itself -- its <span style="font-family: monospace;">bg_color</span> and <span style="font-family: monospace;">border</span> properties are ignored, and its <span style="font-family: monospace;">draw()</span> method is never called.<br><br>You can also turn a container widget back into an ordinary 2D widget by setting its <span style="font-family: monospace;">is_gl_container</span> property to false. You might want to do this, for example, to give a <span style="font-family: monospace;">Row</span> of buttons a background or border.<br><br>Something
+to keep in mind is that drawing on 2D surfaces and transferring them to
+an OpenGL window is usually much slower than drawing directly with
+OpenGL. So if you want high performance, try to keep the window area
+covered by 2D widgets to a minimum.<h2><a name="Example_Code"></a>Example Code</h2>There are some programs in the <span style="font-family: monospace;">demo</span> directory that exercise many of the classes in the Albow library. You may find them useful as a source of usage examples.<br><br>---<br>
+</body></html>

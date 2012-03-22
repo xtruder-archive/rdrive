@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>music module</title></head>
+<body><h1>module <span style="font-family: monospace;">music</span></h1>The <span style="font-family: monospace;">music</span>
+module provides some facilities for handling music. Individual pieces
+of music can be started and stopped, or playlists can be constructed
+and played sequentially or randomly. There are also some control and
+dialog classes available for setting music-related options.<br><br>See also: <a href="play_list.html">PlayList</a>, <a href="enable_music_control.html">EnableMusicControl</a>, <a href="music_volume_control.html">MusicVolumeControl</a>, <a href="music_options_dialog.html">MusicOptionsDialog</a><br><h2>Variables</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">fadeout_time</dt><dd>Time in seconds over which the currently playing music is faded out when stopping or changing to a different piece of music.<br><br></dd><dt>change_delay</dt><dd>Time in seconds between stopping the previously playing music and starting the next piece of music.</dd></dl><h2>Functions</h2><dl><dt style="font-family: monospace;">get_music(name, ..., prefix = "music")</dt><dd>Returns the full pathname of a music resource.<br><br></dd><dt style="font-family: monospace;">get_playlist(name, ..., prefix = "music", random = False, repeat = False)</dt><dd>Returns a <a href="play_list.html">PlayList</a>
+constructed from a resource consisting of a directory of music files.
+The random and repeat arguments are passed on to the PlayList
+constructor.<br><br></dd><dt style="font-family: monospace;">change_music(new_music, repeat = False)</dt><dd>Fades
+out any currently playing music and starts playing the specified music
+file. If repeat is true, the file will be repeated indefinitely,
+otherwise it will only play once.</dd><dd><br></dd><dt style="font-family: monospace;">change_playlist(playlist)</dt><dd>Fades out any currently playing music and starts playing from the&nbsp;specified playlist.<br><br></dd><dt style="font-family: monospace;">get_music_enabled()</dt><dd>Returns true if music is currently enabled.<br><br></dd><dt style="font-family: monospace;">set_music_enabled(state)</dt><dd>Enables or disables music. Note: To work around a bug in the pygame music
+system, disabling music will cause the currently playing music to be
+started again from the beginning when music is re-enabled.<br><br></dd><dt></dt><dt></dt></dl></body></html>

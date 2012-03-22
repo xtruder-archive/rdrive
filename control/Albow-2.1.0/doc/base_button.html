@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>class BaseButton</title></head>
+<body><h1>class <span style="font-family: monospace;">controls.ButtonBase(object)</span></h1>ButtonBase
+is a mixin class for use by widgets having button-like behaviour. It
+provides handlers for mouse events that maintain a "highlighted" state,
+support for enabling and disabling the button, and support for calling
+a function when the button is clicked.<br><br>It does not provide any functionality for drawing; that is the responsibility of the subclass using it.<br><h2>Properties</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">enabled</dt><dd>A
+boolean indicating whether the button is enabled. By default, this
+property is read-write and maintains its own state internal to the
+object. When an <span style="font-family: monospace;">enable</span> function is provided, this property becomes read-only and gets its value via the supplied function.</dd><dt><br><span style="font-family: monospace;">enable = None</span></dt><dd>A&nbsp;function
+of no arguments returning a boolean indicating whether the button
+should be enabled. May also be defined as a method in the subclass.</dd><dt><br><span style="font-family: monospace;">action = None</span></dt><dd>A&nbsp;function of no arguments to be called when the button is clicked.&nbsp;May also be defined as a method in the subclass.</dd></dl><h2>Attributes</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">highlighted</dt><dd>True if the button should be displayed in a highlighted state. This attribute is maintained by the default mouse handlers.</dd></dl><h2>Abstract Methods</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">action()</dt><dd>This
+method is called when the button is clicked and the mouse is released
+within the button. The default implementation does nothing. This method
+is overwritten if an action function is provided in the constructor.</dd></dl>---</body></html>

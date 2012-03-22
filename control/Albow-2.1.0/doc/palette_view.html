@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>PaletteView</title></head>
+<body>
+<h1>class <span style="font-family: monospace;">palette_view.PaletteView(<a href="grid_view.html">GridView</a>)</span></h1>
+The PaletteView class is an abstract base class for implementing tool
+palettes and similar things. A PaletteView displays an array of items
+which can be selected by clicking, with the selected item being
+highlighted. There is provision for scrolling, so that the palette can
+contain more items than are displayed at one time.<br>
+<br>
+The PaletteView does not maintain the items themselves or keep track of
+which one is selected; these things are responsibilities of the
+subclass.<br>
+<h2>Constructor</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">PaletteView(cell_size, nrows, ncols, scrolling = False)</dt>
+  <dd>Initializes the palette view with the specified <span style="font-style: italic;">cell_size</span>, and a rect sized for displaying <span style="font-style: italic;">nrows</span> rows and <span style="font-style: italic;">ncols</span> columns of items. If <span style="font-style: italic;">scrolling</span> is true, controls will be displayed for scrolling the view.<br>
+  </dd>
+</dl>
+<h2><span style="font-weight: bold;"></span>Theme Properties</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">sel_color</dt>
+  <dd>Colour to use for highlighting the selected cell.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">sel_width</dt>
+  <dd>Width of the border drawn around the selected item when the <span style="font-family: monospace;">highlight_style</span> is <span style="font-family: monospace;">'frame'</span>.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">scroll_button_size</dt>
+  <dd>Size of the scrolling buttons. (This is a number, not a tuple -- the scroll buttons are square.)</dd>
+</dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;">scroll_button_color</dt><dd>Colour in which to draw the scrolling buttons.</dd></dl>
+<h2>Attributes</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">highlight_style</dt><dd>Determines the way in which a selected cell is highlighted. Values are <span style="font-family: monospace;">'frame'</span> to draw a frame around the cell,&nbsp;<span style="font-family: monospace;">'fill'</span> to fill its background with the <span style="font-family: monospace;">sel_color</span>, and <span style="font-family: monospace;">'reverse'</span> to swap the foreground and background colours.</dd></dl><h2>Methods</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">scroll_up()</dt>
+  <dd>Scrolls the view up by one page of items, if possible.</dd>
+  <dt><br>
+  </dt>
+  <dt style="font-family: monospace;">scroll_down()</dt>
+  <dd>Scrolls the view down by one page of items, if possible.</dd><dt><br><span style="font-family: monospace;">scroll_to_item(item_no)</span></dt><dd>Scrolls the view so as to make the specified item visible.</dd>
+</dl>
+<h2>Abstract Methods</h2>A minimum implementation needs to supply the following methods.
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">num_items()</dt>
+  <dd>Should return the total number of items in the palette. If
+scrolling is enabled, this can be greater than the number of displayed
+items.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">draw_item(surface, item_no, rect)</dt>
+  <dd>Should draw the item specified by <span style="font-style: italic;">item_no</span> in the given <span style="font-style: italic;">rect</span>.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">click_item(item_no, event)</dt>
+  <dd>Called when a mouse-down event occurs in item <span style="font-style: italic;">item_no</span>.
+Typically the subclass will record the fact that the item is selected
+so that this can be reported later via item_is_selected().<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">item_is_selected(item_no)</dt>
+  <dd>Should return a boolean indicating whether item number <span style="font-style: italic;">item_no</span> is currently to be considered selected.<br>
+  </dd>
+</dl><h2>Default Methods</h2>Greater control can be exercised over the widget's behaviour by overriding the following methods.<br><div style="margin-left: 40px;"><dl><dt style="font-family: monospace;">draw_item_and_highlight(surface, item_no, rect, highlight)</dt><dd>Draws the cell for item <span style="font-style: italic;">item_no</span>, together with highlighting if <span style="font-style: italic;">highlight</span> is true. The default implementation calls <span style="font-family: monospace;">draw_prehighlight</span>,<span style="font-family: monospace;"> draw_item</span> and <span style="font-family: monospace;">draw_posthighlight</span>.<br><br></dd><dt style="font-family: monospace;">draw_prehighlight(surface, item_no, rect)</dt><dd>Called for highlighted cells before <span style="font-family: monospace;">draw_item</span>,
+to draw highlighting that is to appear underneath the cell's contents.<br><br></dd><dt style="font-family: monospace;">draw_posthighlight(surface, item_no, rect)</dt><dd>Called for highlighted cells after <span style="font-family: monospace;">draw_item</span>, to draw highlighting that is to appear on top of the cell's contents.</dd></dl></div>---<br>
+<br>
+</body></html>

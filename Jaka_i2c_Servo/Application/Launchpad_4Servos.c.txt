@@ -1,0 +1,55 @@
+    #include <msp430g2231.h>
+
+    unsigned int counter = 0;                   // Servo counter
+    unsigned int servoPosition[4] = { 180, 180, 180, 180 }; // Default servo position
+    unsigned int servoOn[4] = { BIT4, BIT5, BIT6, BIT7 };
+
+    // DEMO counter
+    unsigned int demoCounter = 0;
+
+    void main(void)
+    {
+     WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
+
+     P1OUT &= ~(BIT4 + BIT5 + BIT6 + BIT7);          // We could replace those BITs with define or simply 0xF0, but I left it for clarity
+     P1DIR |= (BIT4 + BIT5 + BIT6 + BIT7);                                         // Port P1.4-1.7 is out
+     P1SEL &= ~(BIT4 + BIT5 + BIT6 + BIT7);
+
+     CCTL0 = CCIE;                             // CCR0 interrupt enabled
+     CCR0 = 180;                                                           // ~1.5ms
+     TACTL = TASSEL_2 + MC_1 + ID_3;           // SMCLK/8, upmode
+
+     _bis_SR_register(LPM0_bits + GIE);        // Enter LPM0 w/ interrupt
+    }
+
+    // Timer A0 interrupt service routine
+    #pragma vector = TIMERA0_VECTOR
+    __interrupt void Timer_A (void)
+    {
+           counter++;                                                      // Increase counter
+           if(counter == 0x05) counter = 0;                // Counter range is 0-4, the last count is used to add 10ms delay, otherwise analog servos might act funny
+
+           // DEMO movement
+           demoCounter++;
+           if(demoCounter == 800) servoPosition[2] = 80;
+           if(demoCounter == 1600) servoPosition[2] = 280;
+           if(demoCounter == 2000) servoPosition[3] = 280;
+           if(demoCounter == 2400) servoPosition[3] = 180;
+           if(demoCounter == 2800) servoPosition[3] = 280;
+           if(demoCounter == 3200) servoPosition[2] = 130;
+           if(demoCounter == 3600) servoPosition[2] = 230;
+           if(demoCounter == 4000) {
+                   servoPosition[2] = 180;
+                   servoPosition[3] = 180;
+                   demoCounter = 0;
+           }
+           // END DEMO movement
+
+           P1OUT &= ~(BIT4 + BIT5 + BIT6 + BIT7);                       // Clear ports
+           if(counter == 0x04) {
+                   CCR0 = 1500;      // ~10ms delay
+           } else {
+              P1OUT |= servoOn[counter];                      // Set port of the current servo
+              CCR0 = servoPosition[counter];          // Set time for the current servo
+           }
+    }

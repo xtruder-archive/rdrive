@@ -1,0 +1,134 @@
+2.1
+---
+
+New features:
+
+	- Menu and MenuBar classes for pop-up and drop-down menus.
+	
+	- OpenGL facilities.
+	
+	- Music facilities.
+
+Enhancements:
+
+	- Label attributes 'text' and 'align' are now overridable properties.
+	
+	- Widgets can have a background image.
+
+Bug fixes:
+
+	- Various problems with request_new_filename dialog fixed.
+	
+	- TextEditor now passes key events with cmd or alt modifier.
+	
+	- Can no longer set the directory of a file chooser box to
+		a non-existent pathname.
+
+2.0
+---
+
+New features:
+
+	- Control, AttrRef, ItemRef classes
+	
+	- ButtonBase, CheckControl, RadioControl classes mixable with
+		Label, Image, CheckWidget
+	
+	- ValueDisplay widget
+	
+	- Field, TextField, IntField, FloatField widgets
+
+	- CheckBox, RadioButton widgets
+	
+	- Grid layout widget
+	
+	- TabPanel widget
+	
+	- TableView widget
+	
+	- attention_lost() mechanism
+	
+	- Tabbing between text fields
+	
+	- Mechanism for subwidget re-layout on parent size change (anchor
+	  attribute, resized() and parent_resized() methods)
+	
+Improvements:
+
+	- Added aliases for rect attributes to Widget.
+	
+	- Rect passed into Widget constructor is copied.
+	
+	- Added __len__, get_rect() to ImageArray.
+
+	- Added get_focus() method to Widget.
+	
+	- Before dismissing a modal widget, attention_lost()
+	  is broadcast to the focus chain.
+	
+	- Widget.add() recursively traverses a sequence arg.
+	
+	- Widget.visible overridable using get_visible().
+	
+	- Label.align attribute.
+	
+	- Root.confirm_quit() method.
+	
+	- New utils functions: blit_in_rect(), align_rect()
+	
+	- Widget.local_to_global() method.
+	
+	- Widget.present() has centered parameter, default True.
+	
+	- Widget.inherited(attribute) method.
+	
+	- PaletteView: scroll_to_item() method, 'reverse' highlight style,
+	  highlight_style is a theme property.
+	
+	- Modal mixin for default responses on enter/escape.
+	
+	- Row and Column: expand can be an index or a widget.
+	
+	- Label: margin property is honoured, 'c' alignment supported.
+	
+	- Dialog: ok() and cancel() methods, click_outside_response.
+	
+	- ValueField, IntField, FloatField reimplemented based on ValueEditor
+
+	- 'event in widget' operation.
+	
+	- Image widget: image is an overridable property.
+	
+	- TextField.allow_char() method.
+	
+	- Cursor width automatically padded to multiple of 8.
+	
+	- Mouse position and modifiers now passed to Widget.get_cursor() when
+		it is called as a result of a key event.
+
+Modifications:
+
+	- Screen.center() method renamed to add_centered() and moved to Widget.
+
+	- Widget: call_handler() returns the handler's return value, or 'pass'
+	  if there is no handler.
+
+	- PaletteView.draw_prehighlight_with() method added.
+	
+	- Moved to module layout: Row, Column, Frame
+	
+	- Former TextField widget renamed to TextEditor
+	
+	- Moved to module screen: Screen
+	
+	- Moved to module text_screen: TextScreen
+
+Bug fixes:
+
+	- Action of disabled button was invoked when clicked.
+	
+	- Tabbing caused infinite recursion when there was no widget present
+		with tab_stop true.
+
+	- The resource.get_cursor() function now looks for images in the
+		"cursors" subdirectory as documented, rather than "images".

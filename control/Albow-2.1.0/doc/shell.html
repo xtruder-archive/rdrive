@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Shell</title></head>
+<body>
+<h1>class <span style="font-family: monospace;">shell.Shell(<a href="root.html">RootWidget</a>)</span></h1>
+The Shell class is an abstract class to use as a base for the outer
+shell of a game. It provides facilities for switching between a number
+of <span style="font-style: italic;">screens</span>, such as menus, pages of instructions or the game itself. Screens are normally subclasses of the Screen widget.<br>
+<h2>Constructor</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">Shell(surface)</dt>
+  <dd>Initializes the Shell with the given surface as its root surface (normally this will be the PyGame screen surface).<br>
+  </dd>
+</dl>
+<h2>Attributes</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">current_screen</dt>
+  <dd><span style="font-style: italic;">Read-only.</span> The widget being displayed as the current screen. Use the <span style="font-family: monospace;">show_screen()</span> method to change this.<br>
+  </dd>
+</dl>
+<h2>Methods</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">show_screen(new_screen)</dt>
+  <dd>Hides the previous screen, if any, and shows the given widget as
+the new screen. The widget is displayed centered within the shell.<br><br>The <span style="font-family: monospace;">leave_screen()</span> method of the previous screen is called before hiding it, and the <span style="font-family: monospace;">enter_screen()</span> method of the new screen is called after showing it.</dd>
+</dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;"><a name="begin_frame"></a>begin_frame()</dt><dd>Calls the <span style="font-family: monospace;">begin_frame()</span> method of the current screen, if any.</dd></dl>
+<h2>Abstract Methods</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">show_menu()</dt>
+  <dd>If you are using the <a href="text_screen.html">TextScreen</a> widget, you will need to
+implement this method. It should switch to whichever screen you're
+using for the game's main menu. It will be called when a TextScreen is
+being displayed and the user presses the Back button on that screen.<br>
+  </dd>
+</dl>
+---<br>
+<br>
+</body></html>

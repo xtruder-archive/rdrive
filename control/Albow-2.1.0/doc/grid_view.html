@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>GridView</title></head>
+<body>
+<h1>class <span style="font-family: monospace;">grid_view.GridView(<a href="widget.html">Widget</a>)</span></h1>
+The GridView class is an abstract base class for widgets that display
+information in a regular grid of rows and columns. Subclasses implement
+methods that define the size of the grid, for drawing a cell of the
+grid and for responding to mouse clicks in a cell.<br>
+<h2>Constructor</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">GridView(cell_size, nrows, ncols)</dt>
+  <dd>Initializes the grid view with the specified <span style="font-style: italic;">cell_size</span>, and a rect sized to show <span style="font-style: italic;">nrows</span> rows and <span style="font-style: italic;">ncols</span> columns of cells.<br>
+    <br>
+Note that <span style="font-style: italic;">nrows</span> and <span style="font-style: italic;">ncols</span> are used only for calculating the initial size of the widget, and are not stored.</dd>
+</dl>
+<h2>Attributes</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">cell_size</dt>
+  <dd>A tuple defining the size of one grid cell.<br>
+  </dd>
+</dl>
+<h2>Methods</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">cell_rect(row, col)</dt>
+  <dd>Returns a rectangle covering the cell for row <span style="font-style: italic;">row</span> and column <span style="font-style: italic;">col</span>.<br>
+  </dd>
+</dl>
+<h2>Abstract Methods</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">num_rows()</dt>
+  <dd>Should return the current number of rows in the grid.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">num_cols()</dt>
+  <dd>Should return the current number of columns in the grid.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">draw_cell(surface, row, col, rect)</dt>
+  <dd>Should draw the cell at row <span style="font-style: italic;">row</span> and column <span style="font-style: italic;">col</span> inside the specified rectangle.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">click_cell(row, col, event)</dt>
+  <dd>Called when a mouse-down event occurs in the cell at row <span style="font-style: italic;">row</span> and column <span style="font-style: italic;">col</span>.<br>
+  </dd>
+</dl>
+---<br>
+</body></html>

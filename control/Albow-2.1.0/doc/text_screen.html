@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>TextScreen</title></head>
+<body>
+<h1>class <span style="font-family: monospace;">text_screen.TextScreen(<a href="widget.html">Widget</a>)</span></h1>
+The <span style="font-family: monospace;">TextScreen</span> class displays pages of text. It is designed to be used as a screen in a <a style="font-family: monospace;" href="shell.html">Shell</a>.
+The text is read from a file, and some simple markup is used to divide
+it into pages with headings. Buttons are provided for navigating
+between pages and going back to the game's main menu.<br>
+<h2>Text File</h2>
+The text file should reside in the <span style="font-family: monospace;">text</span> subdirectory of the resources directory (see <a href="resource_functions.html">module <span style="font-family: monospace;">resource</span></a>). Pages are separated by lines containing the word <span style="font-family: monospace;">PAGE</span> and nothing else (not even whitespace). The first line of each page is treated as a heading and displayed in a different font.<br>
+<br>
+No word wrapping or other formatting is performed. It is up to you to
+ensure that each line and page of text fits on the screen in the fonts
+being used, allowing room for navigation buttons at the bottom.<br>
+<h2>Constructor</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">TextScreen(filename)</dt>
+  <dd>Initializes the TextScreen from the specified text file, which should be in the <span style="font-family: monospace;">text</span>
+subdirectory of the resources directory. Fonts can be specified for the
+headings, the body text and the navigation buttons; otherwise defaults
+are used.<br>
+  </dd>
+</dl>
+<h2>Theme Properties</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">heading_font</dt><dd>Font to use for the page headings.</dd></dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;">font</dt><dd>Font to use for the body of the text.</dd></dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;">button_font</dt><dd>Font to use for the navigation buttons.</dd></dl>
+<dl style="margin-left: 40px;"></dl>
+<h2>Methods</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">set_current_page(page_no)</dt>
+  <dd>Switch to the specified page number.</dd>
+  <dt><br>
+  </dt>
+  <dt style="font-family: monospace;">prev_page()</dt>
+  <dd>Switch to the previous page, if any.</dd>
+  <dt><br>
+  </dt>
+  <dt style="font-family: monospace;">next_page()</dt>
+  <dd>Switch to the next page, if any.</dd>
+  <dt><br>
+  </dt>
+  <dt style="font-family: monospace;">go_back()</dt>
+  <dd>Returns to the game's main menu by calling the <span style="font-family: monospace;">show_menu()</span> method of the TextScreen's parent widget (which is assumed to be a <a style="font-family: monospace;" href="shell.html">Shell</a>).<br>
+  </dd>
+</dl>
+---<br>
+<br>
+</body></html>

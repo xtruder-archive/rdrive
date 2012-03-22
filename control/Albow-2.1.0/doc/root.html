@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>RootWidget</title></head>
+<body>
+<h1>class <span style="font-family: monospace;">root.RootWidget(<a href="widget.html">Widget</a>)</span></h1>
+For the GUI to function, there must be exactly one instance of
+<span style="font-family: monospace;">RootWidget</span>. It implements the main event loop and serves as the
+ultimate container for all other visible widgets.<br><br>The root widget can be found using the <span style="font-family: monospace;">get_root()</span> function of the <span style="font-family: monospace;">root</span> module.<br><h2>Functions</h2>The <span style="font-family: monospace;">root</span> module contains the following module-level functions.<dl><dt style="font-family: monospace;">get_root()</dt><dd>Returns the root widget.<br><br></dd><dt style="font-family: monospace;">schedule(delay, function)</dt><dd>Arranges for the given <span style="font-style: italic;">function</span> to be called after the specified <span style="font-style: italic;">delay</span> in seconds. Scheduled functions are called synchronously from&nbsp;the event loop, and only when the frame timer is running.</dd></dl>
+<h2>Constructor</h2>
+<div style="margin-left: 40px;">
+<dl>
+  <dt style="font-family: monospace;">RootWidget(surface)</dt>
+  <dd>Initialises the root widget with the given <span style="font-style: italic;">surface</span>, which will normally be the PyGame screen, but could be a subsurface of it.<br>
+  </dd>
+</dl>
+</div>
+<h2>Attributes</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">redraw_every_frame</dt><dd>If true, all widgets will be redrawn on every animation frame (i.e. after every call to <span style="font-family: monospace;">begin_frame()</span>). If false, redrawing only occurs after user input events, such as mouse clicks and keystrokes, or if a widget calls its <a href="widget.html#invalidate"><span style="font-family: monospace;">invalidate()</span></a> method. The default is false.</dd></dl><h2>Methods</h2>
+<div style="margin-left: 40px;">
+<dl>
+  <dt style="font-family: monospace;"><a name="set_timer"></a>set_timer(interval)</dt>
+  <dd>Arranges for the <span style="font-family: monospace;">begin_frame()</span> method to be called every <span style="font-style: italic;">interval</span> milliseconds.</dd>
+  <dt><br>
+  </dt>
+  <dt style="font-family: monospace;">run()</dt>
+  <dd>Runs the main event loop. Control is retained until a QUIT event is received, whereupon the <span style="font-family: monospace;">quit()</span> method is called.</dd><dt style="font-family: monospace;"><br>run_modal(widget)</dt><dd>Runs a modal event loop. The&nbsp;<span style="font-style: italic;">widget</span> is run as a modal dialog until its <span style="font-family: monospace;">dismiss</span> method is called.</dd>
+</dl><dl><dt style="font-family: monospace;">quit()</dt><dd>This method is called when a QUIT event is received. The default implementation first calls <a href="#confirm_quit"><span style="font-family: monospace;">confirm_quit()</span></a>, and if it returns true, calls <span style="font-family: monospace;">sys.exit(0)</span>.</dd></dl>
+</div>
+<h2>Abstract Methods</h2>
+<div style="margin-left: 40px;">
+<dl>
+  <dt style="font-family: monospace;"><a name="begin_frame"></a>begin_frame()</dt>
+  <dd>Called at the beginning of each frame time, as determined by a previous call to<span style="font-family: monospace;"> set_timer</span>.</dd><dt style="font-family: monospace;"><br><a name="confirm_quit"></a>confirm_quit()</dt><dd>Called
+to give an opportunity to ask the user to confirm quitting the main
+event loop. The default implementation simply returns true.</dd>
+</dl>
+</div>
+
+
+---<br>
+<br>
+</body></html>

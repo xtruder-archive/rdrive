@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>class Field</title></head>
+<body><h1>class <span style="font-family: monospace;">fields.Field(<a href="control.html">Control</a>, <a href="text_editor.html">TextEditor</a>)</span></h1><span style="font-family: monospace;">Field</span>
+is an abstract base class for controls that edit a value with a textual
+representation. It provides facilities for converting between the text
+and internal representations of the value, for specifying minimum and
+maximum allowed values, and controlling whether the value is allowed to
+be empty and what representation to use for an empty value.<br><br>A Field can be in two states, <span style="font-style: italic;">editing</span> and <span style="font-style: italic;">non-editing</span>.
+In the non-editing state, the control displays the value to which it is
+linked via its ref attribute. When the user focuses the control and
+begins typing, it switches to the editing state. In this state, the
+text may be edited but the associated value is not yet updated. When
+the Return, Enter or Tab key is pressed, or a mouse click occurs
+anywhere outside the field, the value is updated and the control
+returns to the non-editing state. Updating of the value can also be
+forced by calling the <a href="#commit"><span style="font-family: monospace;">commit()</span></a> method.<br><br>Concrete subclasses of Field include TextField, IntField and FloatField.<br><h2>Constructor</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">Field(width = None)</dt><dd>The
+width may be an integer or a string, as for TextEditor. If no width is
+specified, but a value for min and/or max is specified at construction
+time, the width will be determined from the min or max value. If no
+other way of determining the width is available, it defaults to 100.</dd></dl><h2>Attributes</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">ref = None</dt><dd>Reference to the value to be edited. See <a href="control.html">Control</a>.<br></dd><dt style="font-family: monospace;"><br>min = None</dt><dd>Minimum allowable value. If None, no minimum value will be enforced.<br></dd><dt style="font-family: monospace;"><br>max = None</dt><dd>Maximum allowable value. If None, no maximum value will be enforced.<br></dd><dt style="font-family: monospace;"><br>empty = NotImplemented</dt><dd>Internal value to use when the field is empty. If set to NotImplemented, the user is not allowed to enter an empty value.<br></dd><dt style="font-family: monospace;"><br>format = "%s"</dt><dd>Format string to use when converting the internal representation to text. See also <a href="#format_value">format_value()</a> below.<br></dd><dt style="font-family: monospace;"><br>type</dt><dd>A function for converting from text to the internal representation. Typically a type object, but can be any callable object.<br></dd><dt style="font-family: monospace;"><br>editing</dt><dd><span style="font-style: italic;">Read only.</span> A boolean which is true when the control is in the editing state.</dd></dl><h2>Methods</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;"><a name="commit"></a>commit()</dt><dd>When in the editing state, causes the control's <span style="font-family: monospace;">value</span> to be updated and places the control in the non-editing state.</dd></dl><h2>Default Methods</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;"><a name="format_value"></a>format_value(value)</dt><dd>This method is called to format the value for display. By default it uses the format string specified by the <span style="font-family: monospace;">format</span> attribute. You can override this method to format the value in a different way.</dd></dl></body></html>

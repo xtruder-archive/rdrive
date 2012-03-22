@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Utility Functions</title></head>
+<body>
+<h1>module <span style="font-family: monospace;">utils</span></h1>
+The <span style="font-family: monospace;">utils</span> module exports some drawing-related utility functions.<br>
+<h2>Functions</h2>
+<dl>
+  <dt style="font-family: monospace;">frame_rect(surface, color, rect, thick = 1)</dt>
+  <dd>Draws a border with thickness <span style="font-style: italic;">thick</span> just <span style="font-style: italic;">inside</span> the specified rectangle.<br>
+    <br style="font-family: monospace;">
+  </dd>
+  <dt style="font-family: monospace;">blit_tinted(surface, image, pos, tint, src_rect = None)</dt>
+  <dd>Draws the <span style="font-style: italic;">image</span> onto the <span style="font-style: italic;">surface</span> at position <span style="font-style: italic;">pos</span> with a colour <span style="font-style: italic;">tint</span>
+applied. The components of the tint are added to the colour of each
+pixel, with the result clamped to 255. If the image has an alpha
+channel, it is preserved.<br>
+    <br>
+NOTE: This function requires Numeric.<br>
+  </dd>
+</dl><dl><dt style="font-family: monospace;"><a name="blit_in_rect"></a>blit_in_rect(surface, image, frame, align = 'tl', margin = 0)</dt><dd>Draws the <span style="font-style: italic;">image</span> onto the <span style="font-style: italic;">surface</span> within the rectangle <span style="font-style: italic;">frame</span>, aligned according to <span style="font-style: italic;">align</span>. The alignment string may contain any meaningful combination of the letters <span style="font-family: monospace;">'l'</span>, <span style="font-family: monospace;">'r'</span>, <span style="font-family: monospace;">'t'</span>, <span style="font-family: monospace;">'b'</span> and <span style="font-family: monospace;">'c'</span> for left, right, top, bottom and centre. For example, <span style="font-family: monospace;">'bl'</span> aligns the bottom left corners of the <span style="font-style: italic;">image</span> and <span style="font-style: italic;">frame</span>, and <span style="font-family: monospace;">'cr'</span> aligns their centre right points. If a <span style="font-style: italic;">margin</span> is specified, the <span style="font-style: italic;">frame</span> is considered to be reduced in size by that amount on all sides.</dd></dl><dl><dt style="font-family: monospace;">align_rect(rect, frame, align = 'tl', margin = 0)</dt><dd>Modifies the rectangle <span style="font-style: italic;">rect</span> so that it is aligned with the rectangle <span style="font-style: italic;">frame</span> according to <span style="font-style: italic;">align</span> and <span style="font-style: italic;">margin</span>. See <a href="#blit_in_rect"><span style="font-family: monospace;">blit_in_rect</span></a>.</dd></dl><dl><dt style="font-family: monospace;">brighten(rgb, factor)</dt><dd>Returns a new colour obtained by multiplying each component of the colour <span style="font-style: italic;">rgb</span> by the given <span style="font-style: italic;">factor</span>, which should be a number in the range 0.0 to 1.0.</dd></dl>---<br>
+</body></html>

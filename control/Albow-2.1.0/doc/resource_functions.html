@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Resource Functions</title></head>
+<body>
+<h1>module <span style="font-family: monospace;">resource</span><br>
+</h1>
+The <span style="font-family: monospace;">resource</span> module
+exports some utility functions for finding, loading and cacheing
+various types of resources. By default, resource files are looked for
+in a directory named <span style="font-family: monospace;">Resources</span> alongside the .py file of the progam's main module<span style="font-family: monospace;"></span>, but that can be changed by assigning to the <span style="font-family: monospace;">resource_dir</span> module variable.<br><br>Resource
+names are specified in a platform-independent manner using a series of
+pathname components. Specific resource types are looked for by default
+in subdirectories of the resources directory as follows:<br>
+<br>
+<table style="text-align: left; margin-left: 40px;" border="1" cellpadding="3" cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">Images<br>
+      </td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">resources</span><span style="font-family: monospace;">/images</span><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Fonts<br>
+      </td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">resources</span><span style="font-family: monospace;">/fonts</span><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Sounds<br>
+      </td>
+      <td style="vertical-align: top;"><span style="font-style: italic;">resources</span><span style="font-family: monospace;">/sounds</span><br>
+      </td>
+    </tr>
+  <tr><td style="vertical-align: top;">Text</td><td style="vertical-align: top;"><span style="font-style: italic;">resources</span><span style="font-family: monospace;">/text</span></td></tr><tr><td style="vertical-align: top;">Cursors</td><td style="vertical-align: top;"><span style="font-style: italic;">resources</span><span style="font-family: monospace;">/cursors</span></td></tr></tbody>
+</table>
+<br>The subdirectory can in some cases be overridden using the <span style="font-family: monospace;">prefix</span> parameter to the relevant resource-loading function.<br><br>Each type of resource has a cache. The first time a resource with a
+given name is requested, it is loaded and placed in the cache;
+subsequent requests for the same name will return the cached object.<br>
+<h2>Default Fonts</h2>
+Various widgets default to using members of the Bitstream Vera font
+family (specifically the Vera and Vera Bold typefaces). These are not
+distributed with this package; if you want to use the defaults, you
+will have to obtain these fonts yourself and put them in the fonts
+directory indicated above.<br><br>The default fonts can be overridden by modifying the theme. See <a href="theme_system.html">The Theme System</a> for details.<br>
+<h2>Variables</h2>
+<dl>
+  <dt style="font-family: monospace;">resource_dir</dt>
+  <dd>Pathname of the directory in which to look for resource files.
+Initialized to a directory called resources in the same directory as
+the <span style="font-family: monospace;">resource.py</span> file.<br>
+  </dd>
+  </dl><dl>
+  <dt style="font-family: monospace;">optimize_images</dt>
+  <dd>If true, images loaded with <span style="font-family: monospace;">get_image()</span> will have <span style="font-family: monospace;">convert_alpha()</span> called on them by default. Defaults to true.<br>
+  </dd>
+</dl>
+<h2>Functions</h2>
+<dl>
+  <dt style="font-family: monospace;">resource_path(name, ...)</dt>
+  <dd>Constructs a resource pathname from the module variable <span style="font-family: monospace;">resource_dir</span> and the given pathname components.<br></dd><dt style="font-family: monospace;">resource_exists(name, ...)</dt><dd>Returns true if a resource exists with the given pathname components.<br></dd><dt><br></dt>
+  <dt style="font-family: monospace;"><a name="get_image"></a>get_image(name, ... , border = 0, optimize = optimize_images, noalpha = False, rle = False, prefix = "images")</dt>
+  <dd>Loads the specified image from the images directory or returns it from the cache. If <span style="font-style: italic;">border</span> is specified, a border of that number of pixels is stripped from around the image (making it 2 * <span style="font-style: italic;">border</span> pixels smaller in each direction). If <span style="font-style: italic;">optimize</span> is true, <span style="font-family: monospace;">convert_alpha()</span> is called on the image. If <span style="font-style: italic;">noalpha</span> is true, any alpha channel is stripped from the image. If <span style="font-style: italic;">rle</span> is true, the image is run-length encoded to improve blitting speed.<br>
+    <br>For some of the options to work correctly, you must have initialized the PyGame screen before calling <span style="font-family: monospace;">get_image().<br>
+    <br>
+    </span></dd>
+  <dt style="font-family: monospace;"><a name="get_font"></a>get_font(size, name, ..., prefix = "fonts")</dt>
+  <dd>Loads the specified font or returns it from the cache.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">get_sound(name, ..., prefix = "sounds")</dt>
+  <dd>Loads the specified sound or returns it from the cache.<br><br>If
+the sound is unable to be loaded for any reason, a warning message is
+printed and a dummy sound object with no-op methods is returned. This
+allows an application to continue without sound in an environment where
+sound support is not available.</dd>
+</dl><dl><dt style="font-family: monospace;">get_text(name, ..., prefix = "text")</dt><dd>Loads the contents of a text file as a string or returns it from the cache. The file is opened in universal newlines mode.</dd></dl><dl><dt style="font-family: monospace;"><a name="get_cursor"></a>get_cursor(name, ..., prefix = "cursors")</dt><dd>Loads
+a cursor from an image file or returns it from the cache. The cursor is
+returned as a tuple of arguments suitable for passing to the PyGame function <span style="font-family: monospace;">set_cursor()</span>.<br><br>The
+image must be no larger than 16x16 pixels and should consist only of
+the colours black (0, 0, 0), white (255, 255, 255), blue (0, 0, 255)
+and cyan (0, 255, 255). Blue and cyan are used to indicate the position
+of the hotspot, with blue if the hotspot is over a black or transparent
+pixel, and cyan if it is over a white pixel. The hotspot defaults to
+the top left corner. If the image has an alpha channel, it should
+consist of fully opaque or fully transparent pixels.</dd></dl>
+---<br>
+<br>
+</body></html>

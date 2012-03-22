@@ -1,0 +1,3 @@
+shell /home/offlinehacker/projects/rdrive/ffmpeg-android-tutorial/debug.sh
+set solib-search-path /home/offlinehacker/projects/rdrive/ffmpeg-android-tutorial/obj/local/armeabi
+directory /home/offlinehacker/dev/android-ndk-r5b/platforms/android-8/arch-arm/usr/include /home/offlinehacker/projects/rdrive/ffmpeg-android-tutorial/jni/include /home/offlinehacker/projects/rdrive/ffmpeg-android-tutorial/jni /home/offlinehacker/dev/android-ndk-r5b/sources/cxx-stl/system

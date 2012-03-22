@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>GLViewport</title></head><body><h1>class <span style="font-family: monospace;">opengl.GLViewport(<a href="widget.html">Widget</a>)</span></h1>A GLViewport provides basic OpenGL drawing and input handling facilities.<br><br>When
+using GLViewport, you are responsible for setting up the projection
+matrix. For most applications you will probably find it more convenient
+to use GLOrtho or GLPerspective.<br><h2>Mouse Event Handling</h2>Mouse events passed to the mouse handling methods of a GLViewport have an additional attribute called <span style="font-family: monospace;">ray</span>. This is a pair of points ((<span style="font-style: italic;">x1</span>, <span style="font-style: italic;">y1</span>, <span style="font-style: italic;">z1</span>), (<span style="font-style: italic;">x2</span>, <span style="font-style: italic;">y2</span>, <span style="font-style: italic;">z2</span>)) obtained by projecting the mouse coordinates onto the near and far planes respectively.<br><h2>Abstract Methods</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">setup_projection()</dt><dd>This
+method is called during drawing and mouse event handling to establish
+the projection matrix. When called, the projection matrix is selected
+and has been initialised to an identity matrix.<br><br></dd><dt style="font-family: monospace;">setup_modelview()</dt><dd>This method is called during drawing and mouse event handling to establish the modelview matrix. When called,
+the&nbsp; modelview matrix is selected and has been initialised to an
+identity matrix.<br><br></dd><dt style="font-family: monospace;">gl_draw()</dt><dd>This
+method is called after the projection and model-view matrices have been
+set up. All OpenGL attributes are saved before calling this method and
+restored afterwards, so you can freely change OpenGL state here without
+affecting any other GLViewports.</dd></dl><h2>Advanced Methods</h2>The
+following methods implement the default&nbsp;drawing mechanism. You can
+optionally override them to gain more conrol over the process.<br><dl style="margin-left: 40px;"><dt style="font-family: monospace;">gl_draw_viewport()</dt><dd>This
+method is called after the viewport has been set up. It is responsible
+for establishing the projection and modelview matrices and performing
+the drawing. All OpenGL attributes are saved and restored around calls
+to this method. The default implementation calls setup_matrices() and
+gl_draw().<br><br></dd><dt style="font-family: monospace;">setup_matrices()</dt><dd>This method is called from the default implementation of gl_draw_viewport(). It
+is responsible for setting up the projection and modelview matrices.
+The default implementation calls setup_projection() and
+setup_modelview().</dd></dl><h2>Other Methods</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">augment_mouse_event(event)</dt><dd>This
+method is used to add the ray attribute to a mouse event before calling
+the corresponding handler. Usually it is called automatically, but you
+may want to call it yourself if youreceive a mouse event by some means other than the usual channels.  <span style="font-style: italic;">Note</span>: This method calls the matrix setup methods, and changes the projection and modelview matrices as a side effect.</dd></dl></body></html>

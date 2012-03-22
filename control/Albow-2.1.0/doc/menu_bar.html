@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>MenuBar</title></head>
+<body><h1>class <span style="font-family: monospace;">menu_bar.MenuBar(</span><a style="font-family: monospace;" href="widget.html">Widget</a><span style="font-family: monospace;">)</span></h1>The MenuBar class works in conjunction with the Menu class to provide a set of drop-down menus.<br><br>A
+menu bar displays the titles of its attached menus in a horizontal row.
+Clicking on a menu title causes the associated menu to be displayed,
+allowing an item to be selected from it.<br><br>Menu items are linked to handler methods via <span style="font-style: italic;">command names</span>. When a menu item is invoked, a search is made for a method whose name is the item's command name with <span style="font-family: monospace;">'_cmd'</span> appended. The search starts at the widget having the keyboard focus and proceeds up towards to the root widget.<br><br>Menu items can be enabled or disabled. Whether an item is enabled is determined by searching for an <span style="font-style: italic;">enabling method</span> whose name is the command name with <span style="font-family: monospace;">'_enabled'</span>
+appended. The search is made along the same path as the search for a
+handler method. If an enabling method is found, it is called and its
+boolean result determines whether the item is enabled. If no enabling
+method is found, the item defaults to being enabled.<br><br>A menu item
+can also be associated with a key combination that includes the
+platform's standard menu command modifier key (Command on Mac, Control
+on other platforms). For this to work, the MenuBar must be attached to
+the <a href="widget.html#menu_bar"><span style="font-family: monospace;">menu_bar</span></a> property of
+another widget, and that widget must be somewhere on the path from the
+root widget to the widget having the keyboard focus.<br><br>Note that
+menu command key events are intercepted while being dispatched from the
+root down to the focus widget, so menu commands will take precedence
+over any handling of the same events in <span style="font-family: monospace;">key_down</span> methods.<br><h3>See Also</h3><a href="menu.html"><span style="font-family: monospace;">Menu</span></a> for details of creating menu items and associating them with command names and key combinations.<br><br><a href="widget.html#menu_bar"><span style="font-family: monospace;">Widget.menu_bar</span></a> for attaching the menu bar to a widget.<br><h2>Constructor</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">MenuBar()</dt><dd>Creates
+a menu bar. The height defaults to the font height. If you don't
+specify a width, it will be set automatically when the menu bar is
+assigned to the <a href="widget.html#menu_bar"><span style="font-family: monospace;">menu_bar</span></a> property of a widget.</dd></dl><h2>Properties</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">menus</dt><dd>A list of <a href="menu.html">Menu</a> instances.</dd></dl><dl><dt></dt></dl></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>TextEditor</title></head>
+<body>
+<h1>class <span style="font-family: monospace;">fields.TextEditor(<a href="widget.html">Widget</a>)</span></h1>
+A <span style="font-family: monospace;">TextEditor</span> provides&nbsp;simple single-line text editing. Typed
+characters are inserted into the text, and characters are deleted using
+Delete or Backspace. Clicking on the text field gives it the keyboard
+focus and sets the insertion point. Pressing the Tab key moves to the next tabbable widget.<br>
+<br>
+There is currently no support for selecting or copying and pasting text.<br>
+<h2>Constructor</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">TextEditor(width)</dt>
+  <dd>The <span style="font-style: italic;">width</span>
+can be either an integer or a string. If an integer, it specifies the
+width in pixels; if a string, the widget is made just wide enough to
+contain the given text. The height is determined by the height of a
+line of text in the font in effect at construction time.</dd></dl>
+<h2>Theme Properties</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">fg_color</dt>
+  <dd>Colour in which to display the text and insertion bar.<br><br>
+    </dd><dt style="font-family: monospace;">sel_color</dt><dd>Colour in which to display selected text.<br><br></dd>
+  <dt style="font-family: monospace;">font</dt>
+  <dd>Font in which to display the text.</dd></dl><h2>Properties</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">text</dt><dd>The current text, provided the <span style="font-family: monospace;">get_text</span> and <span style="font-family: monospace;">set_text</span> methods have not been overridden.</dd></dl><h2>Attributes</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">upper</dt><dd>If true, text typed into the field is forced to upper case.</dd></dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;">insertion_point</dt><dd>The current position of the insertion point. May be set to <span style="font-family: monospace;">None</span> to position it at the end of the text.</dd></dl><dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">enter_action</dt>
+  <dd>A function of no arguments to be called when Return or Enter is
+pressed. If not specified, Return and Enter key events are passed to
+the parent widget.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">escape_action</dt>
+  <dd>A function of no arguments to be called when Escape is
+pressed. If not specified, Escape key events are passed to
+the parent widget.</dd>
+</dl><h2>Abstract Methods</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">allow_char(c)</dt><dd>Called
+to determine whether typing the character c into the text editor should
+be allowed. The default implementation returns true for all characters.</dd></dl><dl style="margin-left: 40px;"><dt><span style="font-family: monospace;">get_text()</span><br><span style="font-family: monospace;">set_text(</span><span style="font-style: italic;">text</span><span style="font-family: monospace;">)</span></dt><dd>Internally,
+the widget uses these methods to access the text being edited. By
+default they access text held in a private&nbsp;attribute. By overriding them, you can
+arrange for the widget to edit text being held somewhere else.</dd></dl>---<br>
+<br>
+</body></html>

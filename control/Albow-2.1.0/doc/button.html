@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Button</title></head>
+<body>
+<h1>class <span style="font-family: monospace;">controls.Button(<a href="base_button.html">ButtonBase</a>, <a href="label.html">Label</a>)</span></h1>
+A Button is a widget with a textual label which can be clicked with the mouse to trigger an action.<br>
+<h2>Constructor</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">Button(text, action = None, enable = None)</dt>
+  <dd>Initializes the button with the given <span style="font-style: italic;">text</span>. The <span style="font-style: italic;">action</span>
+should be a function of no arguments; it will be called when the
+mouse is clicked and released again inside the button. If supplied, <span style="font-style: italic;">enable</span> should be a function returning a boolean; it will be used to determine whether the button is enabled.<br>
+  </dd>
+</dl>
+<h2>Theme Properties</h2>
+<dl style="margin-left: 40px;">
+  <dt style="font-family: monospace;">highlight_color</dt>
+  <dd>Colour in which to display the text while mouse has been clicked but not yet released.</dd></dl><dl style="margin-left: 40px;"><dt style="font-family: monospace;">disabled_color</dt><dd>Colour in which to display the text when the widget is disabled.</dd><dt><br><span style="font-family: monospace;">highlight_bg_color</span></dt><dd>Colour with which to fill the background when the widget is highlighted.</dd><dt><br><span style="font-family: monospace;">enabled_bg_color</span></dt><dd>Colour with which to fill the background when the widget is enabled.</dd><dt><br><span style="font-family: monospace;">disabled_bg_color</span></dt><dd>Colour with which to fill the background when the widget is disabled.</dd>
+</dl><h2>
+Properties</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">enabled</dt><dd>True
+if the button is enabled. If no enable function was supplied in the
+constructor, this property may also be assigned in order to enable and
+disable the button.</dd></dl>---<br>
+<br>
+</body></html>

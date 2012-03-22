@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Label</title></head>
+<body>
+<h1>class <span style="font-family: monospace;">controls.Label(<a href="widget.html">Widget</a>)</span></h1>
+A Label displays a piece of static text in a chosen font and colour.<br>
+<h2>Constructor</h2>
+<div style="margin-left: 40px;">
+<dl>
+  <dt style="font-family: monospace;">Label(text, width = None)</dt>
+  <dd>Initializes the label with the given text and font. If a <span style="font-style: italic;">width</span>
+is specified, it is used, otherwise the label is initially made just
+wide enough to contain the text. The text may consist of more than one
+line, separated by <span style="font-family: monospace;">'\n'</span>.
+The initial height is determined by the number of lines and the font
+specified at construction time or the default font from the theme.<br>
+  </dd>
+</dl>
+</div><h2>Theme Properties</h2>
+<div style="margin-left: 40px;">
+<dl>
+  <dt style="font-family: monospace;">font</dt>
+  <dd>The font in which to display the text.<br>
+    <br>
+  </dd>
+  <dt style="font-family: monospace;">fg_color</dt>
+  <dd>The colour in which to display the text.<br>
+  </dd>
+</dl>
+</div>
+<h2>Properties</h2><dl style="margin-left: 40px;"><dt style="font-family: monospace;">text</dt><dd>The text to be displayed. This can be changed dynamically, but the label won't automatically resize to accommodate the new text.</dd><dt style="font-family: monospace;"><br>align</dt><dd>Specifies the alignment of the text within the widget's rect. One of <span style="font-family: monospace;">'l'</span>, <span style="font-family: monospace;">'c'</span> or <span style="font-family: monospace;">'r'</span> for left, centre or right.</dd></dl>
+---<br>
+</body></html>

@@ -1,0 +1,5 @@
+biti:	opis:
+0-4	Odmik servota od srednje lege
+5	Smer odmika servota (0-levo, 1-desno)
+6	Vklop, izklop servo motorja
+7	Izbira servota (0-servo 1, 1-servo 2)
